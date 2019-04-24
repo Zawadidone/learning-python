@@ -121,3 +121,12 @@ objects that survive will be promoted to the next generation
 reference conting is not thread safe
 
 
+__slots__
+
+## Global Interpreter Lock (Gil)
+Only one thread can run in the interpreter at a time
+
+:) - Fast & simple garbage collection
+:( - Only one thread wil be executed at a time
+
+Use multi-processing instead of multi-threading, so each processor wil have it's own Gil
