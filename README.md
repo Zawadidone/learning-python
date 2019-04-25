@@ -22,13 +22,13 @@ a name or a container object that points t
 
 reference count - the number of references
 
-increase reference count
-
 ```
 x = 300
 y = 300
 ```
-PyObject
+
+|PyObject||
+|---|---|
 |type|integer|
 |refcount|2|
 |value|300|
@@ -36,21 +36,24 @@ PyObject
 2 references
 
 `del(x)`
-It removes the name to the object and reduces the reference count by 1.
+It removes the name to the object and reduces the reference count by 1 of object `300`.
 
 If a object has no references it wil be deleted by the garbage collection
-
 
 ```
 def print_word():
   word = 'Seven'
+  
+print_word() #  ref count object 'Seven' is 1 
+sleep(5)
 ```
-if a object is out of scope the reference count goes to 0
+After the function `print_word()` is done the object 'Seven' is out of scope and the reference count goes to 0 by the garbage collection.
 
 local vs global namespace
-glob
 
 the reference count never goes to 0 because of global
+
+`id()` - Returns the address of the object in memory.
 ```
 >>> x = 30
 >>> y = 30
@@ -61,12 +64,13 @@ the reference count never goes to 0 because of global
 >>> x is y
 True
 ```
+The addresses of the object `30` and `30` are the same of in memory.
 
 ### Garbage collection
 A way for a program to automatically release memory when the object taking up that space is no longer in use(reference counting, tracing)
 
 ### Reference counting
-If reference count is 0 -> Objects -> Garbage
+If reference count is 0 -> Garbage
 
 Every reference count is stored for every object/assignment
 
@@ -119,9 +123,6 @@ if an object has no outisde references, it's put on the discard list
 objects that survive will be promoted to the next generation
 
 reference conting is not thread safe
-
-
-__slots__
 
 ## Global Interpreter Lock (Gil)
 Only one thread can run in the interpreter at a time
