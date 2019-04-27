@@ -1,7 +1,12 @@
-# Python3 :)
+# Python3
+Python code -> CPython-interpreter compiling -> .pyc -> Byte code -> Python virtual machine -> Machine language -> Processor
+
+
+## OOP
+"__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
 
 ## Memory management
-Names - References -> Objects
+Names -> References -> Objects
 
 ### Object
 An object stores: type, value, reference count
@@ -27,11 +32,15 @@ x = 300
 y = 300
 ```
 
-|PyObject||
+|PyObject|
 |---|---|
 |type|integer|
 |refcount|2|
 |value|300|
+
+ob_refcnt: reference count
+ob_type: pointer to another type
+
 
 2 references
 
@@ -104,7 +113,7 @@ root - 0
 left - 1
 right - 1 
 
-### Tracing
+### Tracing notdone
 mark and sweep
 
 Follow the references, mark an sweep
@@ -125,6 +134,12 @@ objects that survive will be promoted to the next generation
 reference conting is not thread safe
 
 ## Global Interpreter Lock (Gil)
+The solution to the problem of dealing with shared resources, like memory in a computer. When two threads try to modify the same resource at the same time, they can step on each other's toes. The end result can be a garbled mess where neither of the threads ends up with what they wanted.
+
+Python’s GIL accomplishes this by locking the entire interpreter, meaning that it’s not possible for another thread to step on the current one. When CPython handles memory, it uses the GIL to ensure that it does so safely.
+
+Python’s GIL accomplishes this by locking the entire interpreter, meaning that it’s not possible for another thread to step on the current one. When CPython handles memory, it uses the GIL to ensure that it does so safely.
+
 Only one thread can run in the interpreter at a time
 
 :) - Fast & simple garbage collection
