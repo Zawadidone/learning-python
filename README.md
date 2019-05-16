@@ -1,12 +1,27 @@
 # Python3
-Python code -> CPython-interpreter compiling -> .pyc -> Byte code -> Python virtual machine -> Machine language -> Processor
+..... The texts are from websites and no written by me.
 
+
+Python code -> CPython-interpreter compiling ->  -> Byte code (.pyc -> CPython virtual machine -> Machine language -> Processor)
+
+
+CPython can be defined as both an interpreter and a compiler
 
 ## OOP
 "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
 
 ## Memory management
 Names -> References -> Objects
+
+providing memory - memory allocation
+object allocator - responsible for allocating memory within the object memory area
+
+### Blocks
+
+A pool can have blocks in 3 states:
+* untouched - a portion of memory that has not been allocated
+* free - a portion of memory that was allocated but later made free by CPython
+* allocated - a portion of memory that contains relevant data
 
 ### Object
 An object stores: type, value, reference count
@@ -146,3 +161,42 @@ Only one thread can run in the interpreter at a time
 :( - Only one thread wil be executed at a time
 
 Use multi-processing instead of multi-threading, so each processor wil have it's own Gil
+
+## Threading
+Threading in Python is used to run multiple threads (tasks) at the same time. Note that this does not mean that they are executed on different CPUs. Python threads will not make a program faster.
+
+Python threads are used in cases where the execution of a tasks involves some waiting. Threading allows python to execute other code while waiting.
+
+This is easily simulated with the sleep function:
+```python
+#!/usr/bin/env python
+
+import threading
+import time
+
+
+class MyThread(threading.Thread):
+    def run(self):
+        print("{} started!".format(self.getName()))              # "Thread-x started!"
+        time.sleep(1)                                      # Pretend to work for a second
+        print("{} finished!".format(self.getName()))             # "Thread-x finished!"
+def main():
+    for x in range(4):                                     # Four times...
+        mythread = MyThread(name = "Thread-{}".format(x + 1))  # ...Instantiate a thread and pass a unique ID to it
+        mythread.start()                                   # ...Start the thread, invoke the run method
+        time.sleep(.9)                                     # ...Wait 0.9 seconds before starting another
+if __name__ == '__main__':main()
+```
+Output:
+```text
+Thread-1 started!
+Thread-2 started!
+Thread-1 finished!
+Thread-3 started!
+Thread-2 finished!
+Thread-4 started!
+Thread-3 finished!
+Thread-4 finished! 
+```
+
+
