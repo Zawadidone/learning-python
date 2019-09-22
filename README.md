@@ -1,5 +1,5 @@
 # Python3
-Python code -> CPython-interpreter compiling -> .pyc -> Byte code -> Python virtual machine -> Machine language -> Processor
+Python code -> CPython compiling -> .pyc -> Byte code -> CPython virtual machine -> Machine language -> Processor
 
 
 ## OOP
@@ -32,13 +32,14 @@ x = 300
 y = 300
 ```
 
-|PyObject|
+|PyObject||
 |---|---|
 |type|integer|
 |refcount|2|
 |value|300|
 
 ob_refcnt: reference count
+
 ob_type: pointer to another type
 
 
@@ -100,38 +101,46 @@ left.next(right)
 rigt.next(left)
 ```
 Reference count
+
 root - 1
+
 left - 3
+
 right - 2
 
 del root
+
 del node1
+
 del node2
 
 reference count
+
 root - 0
+
 left - 1
+
 right - 1 
 
-### Tracing notdone
+### Tracing 
 mark and sweep
 
 Follow the references, mark an sweep
 
 python maintains a list of every object created as a program is run
 
-only a container with refcounte > 0 will be stored in the list
+only a container with refcount > 0 will be stored in the list
 
 garbage collection cycle
 Python makes a list of objects to discard
 
 It runs an algorithm to detect reference cycles
 
-if an object has no outisde references, it's put on the discard list
+if an object has no outside references, it's put on the discard list
 
 objects that survive will be promoted to the next generation
 
-reference conting is not thread safe
+reference counting is not thread safe
 
 ## Global Interpreter Lock (Gil)
 The solution to the problem of dealing with shared resources, like memory in a computer. When two threads try to modify the same resource at the same time, they can step on each other's toes. The end result can be a garbled mess where neither of the threads ends up with what they wanted.
