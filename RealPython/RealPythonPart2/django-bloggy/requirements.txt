@@ -39,7 +39,7 @@ onboard==1.2.0
 padme==1.1.1
 patterns==0.3
 pexpect==4.2.1
-Pillow==4.2.1
+Pillow==6.2.0
 plainbox==0.35.0
 progressbar==2.3
 ptyprocess==0.5.2
