@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>NS Kaartautomaat</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-danger" role="alert">
+        {{ message }}
+</div>
+{% endfor %}
+
+<form action="" method="POST">
+        <img  src="{{ url_for('static', filename='nslogo.svg' )}}"> {{ form.station }} {{ form.csrf_token }} {{ form.submit }}
+</form>
+
+{% if departures %}
+<h2>Departure times</h2>
+<table class="table">
+        <thead class="thead-dark">
+        <tr>
+                <th scope="col">Departure</th>
+                <th scope="col">To</th>
+                <th scope="col">Track</th>
+                <th scope="col">Train</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for d in departures %}
+        <tr>
+            <th scope="row">{{ d['actualDateTime'][11:16] }}</th>
+            <td>{{ d['direction'] }}</td>
+            <td>{{ d['plannedTrack'] }}</td>
+            <td>{{ d['product']['longCategoryName']  }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+</table>
+{% endif %}
+</body>
+</html>
