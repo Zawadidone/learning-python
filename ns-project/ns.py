@@ -59,7 +59,7 @@ def select_station(conn, station_name):
     """
     try:
         c = conn.cursor()
-        c.execute(f"SELECT code FROM stations WHERE name = '{station_name}' COLLATE NOCASE LIMIT 1")
+        c.execute(f"SELECT code FROM stations WHERE name = %s'", (station_name,))
 
         row = c.fetchone()
         return row[0]
