@@ -24,7 +24,8 @@ port = 1025
 smtp_server = "localhost"
 sender_email = "admin@localhost.com"
 receiver_email = ontvanger
-message = tekstveld
+message = 'Subject: {}\n\n{}'.format(subject, tekstveld)
 
 server = smtplib.SMTP(smtp_server, port)
 server.sendmail(sender_email, receiver_email, message)
+server.quit()
